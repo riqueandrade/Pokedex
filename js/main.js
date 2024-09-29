@@ -1,6 +1,6 @@
 import { elements } from './dom.js';
 import { fetchPokemon, fetchPokemonList, fetchPokemonSpecies } from './api.js';
-import { updatePokemonInfo, populatePokemonList, setupDarkMode, setupTypeFilter, updateEvolutionChain, lazyLoadImage, setupLanguageSelect, filterPokemonByType } from './ui.js';
+import { updatePokemonInfo, populatePokemonList, setupDarkMode, updateEvolutionChain, lazyLoadImage, setupLanguageSelect } from './ui.js';
 
 let currentPokemonId = 1;
 let pokemonList = [];
@@ -32,13 +32,7 @@ const searchPokemon = () => {
 const loadPokemonList = async () => {
     try {
         const data = await fetchPokemonList();
-        pokemonList = await Promise.all(data.results.map(async (pokemon) => {
-            const detailedData = await fetchPokemon(pokemon.name);
-            return {
-                ...pokemon,
-                types: detailedData.types
-            };
-        }));
+        pokemonList = data.results;
         populatePokemonList({ results: pokemonList });
     } catch (error) {
         console.error('Erro ao carregar lista de Pokémon:', error);
@@ -58,13 +52,6 @@ const setupEventListeners = () => {
     elements.pokemonList.addEventListener('change', function () {
         if (this.value) loadPokemon(this.value);
     });
-    if (elements.typeFilter) {
-        elements.typeFilter.addEventListener('change', function() {
-            const selectedType = this.value;
-            const filteredPokemon = filterPokemonByType(pokemonList, selectedType);
-            populatePokemonList({ results: filteredPokemon });
-        });
-    }
 };
 
 const init = async () => {
@@ -73,10 +60,6 @@ const init = async () => {
         setupDarkMode();
         setupLanguageSelect(() => loadPokemon(currentPokemonId));
         await loadPokemonList();
-        if (pokemonList.length > 0) {
-            const types = Array.from(new Set(pokemonList.flatMap(pokemon => pokemon.types.map(t => t.type.name))));
-            setupTypeFilter(types);
-        }
         await loadPokemon(1);
     } catch (error) {
         console.error('Erro durante a inicialização:', error);

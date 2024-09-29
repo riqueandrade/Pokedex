@@ -90,26 +90,6 @@ export const setupDarkMode = () => {
     }
 };
 
-export const setupTypeFilter = (types) => {
-    const typeFilter = document.getElementById('typeFilter');
-    typeFilter.innerHTML = '<option selected>Filtrar por tipo</option>';
-    types.forEach(type => {
-        const option = document.createElement('option');
-        option.value = type;
-        option.textContent = translateType(type);
-        typeFilter.appendChild(option);
-    });
-};
-
-export const filterPokemonByType = (pokemonList, selectedType) => {
-    if (selectedType === 'Filtrar por tipo') {
-        return pokemonList;
-    }
-    return pokemonList.filter(pokemon => 
-        pokemon.types && pokemon.types.some(type => type.type.name === selectedType)
-    );
-};
-
 export const updateEvolutionChain = async (species) => {
     const evolutionChain = document.getElementById('evolutionChain');
     evolutionChain.innerHTML = 'Carregando evolução...';
