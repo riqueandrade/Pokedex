@@ -248,3 +248,21 @@ body.dark-mode .dark-mode-toggle .fa-moon {
 .moves-container .badge {
     font-size: 0.8rem;
 }
+
+/* Transição suave para mudança de tema */
+body, .card, .card-header, .progress, .dark-mode-toggle {
+    transition: all 0.3s ease;
+}
+
+body.dark-mode, 
+body.dark-mode .card, 
+body.dark-mode .card-header, 
+body.dark-mode .progress, 
+body.dark-mode .dark-mode-toggle {
+    transition: all 0.3s ease;
+}
+
+/* Ajuste a transição para os ícones do botão de modo escuro */
+.dark-mode-toggle i {
+    transition: all 0.3s ease;
+}
