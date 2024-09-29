@@ -90,36 +90,6 @@ export const setupDarkMode = () => {
     }
 };
 
-export const updateEvolutionChain = async (species) => {
-    const evolutionChain = document.getElementById('evolutionChain');
-    evolutionChain.innerHTML = 'Carregando evolução...';
-
-    try {
-        const response = await fetch(species.evolution_chain.url);
-        const data = await response.json();
-        
-        let chain = data.chain;
-        let evolutionHTML = '';
-
-        while (chain) {
-            const pokemonName = chain.species.name;
-            evolutionHTML += `<span>${capitalize(pokemonName)}</span>`;
-            
-            if (chain.evolves_to.length > 0) {
-                evolutionHTML += ' → ';
-                chain = chain.evolves_to[0];
-            } else {
-                break;
-            }
-        }
-
-        evolutionChain.innerHTML = `<h6>Cadeia de Evolução:</h6>${evolutionHTML}`;
-    } catch (error) {
-        console.error('Erro ao carregar a cadeia de evolução:', error);
-        evolutionChain.innerHTML = 'Não foi possível carregar a cadeia de evolução.';
-    }
-};
-
 // Função para lazy loading de imagens
 export const lazyLoadImage = (url, element) => {
     const img = new Image();

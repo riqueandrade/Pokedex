@@ -217,3 +217,34 @@ body.dark-mode .dark-mode-toggle .fa-moon {
         right: 10px;
     }
 }
+
+@media (min-width: 992px) {
+    .container-fluid {
+        max-width: 1400px;
+    }
+
+    .pokemon-image {
+        max-height: 400px;
+    }
+
+    .stats-container {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .stat-bar {
+        margin-bottom: 0.5rem;
+    }
+}
+
+/* Ajuste para o container de movimentos */
+.moves-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+/* Ajuste para os badges de movimentos */
+.moves-container .badge {
+    font-size: 0.8rem;
+}

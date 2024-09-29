@@ -1,6 +1,6 @@
 import { elements } from './dom.js';
-import { fetchPokemon, fetchPokemonList, fetchPokemonSpecies } from './api.js';
-import { updatePokemonInfo, populatePokemonList, setupDarkMode, updateEvolutionChain, lazyLoadImage, setupLanguageSelect } from './ui.js';
+import { fetchPokemon, fetchPokemonList } from './api.js';
+import { updatePokemonInfo, populatePokemonList, setupDarkMode, lazyLoadImage, setupLanguageSelect } from './ui.js';
 
 let currentPokemonId = 1;
 let pokemonList = [];
@@ -12,8 +12,9 @@ const loadPokemon = async (pokemon) => {
         updatePokemonInfo(data);
         lazyLoadImage(data.sprites.other['official-artwork'].front_default || data.sprites.front_default, elements.pokemonImage);
         
-        const speciesData = await fetchPokemonSpecies(data.species.url);
-        updateEvolutionChain(speciesData);
+        // Remove the following lines:
+        // const speciesData = await fetchPokemonSpecies(data.species.url);
+        // updateEvolutionChain(speciesData);
     } catch (error) {
         console.error('Erro ao carregar Pokémon:', error);
         alert('Pokémon não encontrado. Verifique o nome ou número e tente novamente.');
