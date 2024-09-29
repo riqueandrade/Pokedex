@@ -21,3 +21,14 @@ export const fetchPokemonList = async () => {
         throw error;
     }
 };
+
+export const fetchPokemonSpecies = async (url) => {
+    try {
+        const response = await fetch(url);
+        if (!response.ok) throw new Error('Falha ao carregar informações da espécie');
+        return await response.json();
+    } catch (error) {
+        console.error('Erro ao carregar informações da espécie:', error);
+        throw error;
+    }
+};

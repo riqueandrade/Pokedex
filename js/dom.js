@@ -12,5 +12,8 @@ export const elements = {
     pokemonStats: document.getElementById('pokemonStats'),
     prevButton: document.getElementById('prevButton'),
     nextButton: document.getElementById('nextButton'),
-    pokemonList: document.getElementById('pokemonList')
+    pokemonList: document.getElementById('pokemonList'),
+    pokemonMoves: document.getElementById('pokemonMoves'),
+    typeFilter: document.getElementById('typeFilter'),
+    languageSelect: document.getElementById('languageSelect')
 };
